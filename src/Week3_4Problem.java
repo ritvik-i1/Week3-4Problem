@@ -1,26 +1,17 @@
-import java.util.*;
-
 public class Week3_4Problem {
 
-    static class Asset {
-        String name;
-        double returnRate;
-
-        Asset(String n, double r) {
-            name = n;
-            returnRate = r;
+    static int linearSearch(String[] arr, String target) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].equals(target)) return i;
         }
+        return -1;
     }
 
     public static void main(String[] args) {
-        List<Asset> list = new ArrayList<>();
-        list.add(new Asset("AAPL", 12));
-        list.add(new Asset("TSLA", 8));
-        list.add(new Asset("GOOG", 15));
+        String[] arr = {"accB", "accA", "accB", "accC"};
 
-        list.sort(Comparator.comparingDouble(a -> a.returnRate));
+        int index = linearSearch(arr, "accB");
 
-        for (Asset a : list)
-            System.out.println(a.name + ":" + a.returnRate);
+        System.out.println("Found at index: " + index);
     }
 }
