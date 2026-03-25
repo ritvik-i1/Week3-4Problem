@@ -1,17 +1,25 @@
 public class Week3_4Problem {
 
-    static int linearSearch(String[] arr, String target) {
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i].equals(target)) return i;
+    static int floor(int[] arr, int target) {
+        int res = -1;
+        int low = 0, high = arr.length - 1;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            if (arr[mid] <= target) {
+                res = arr[mid];
+                low = mid + 1;
+            } else high = mid - 1;
         }
-        return -1;
+        return res;
     }
 
     public static void main(String[] args) {
-        String[] arr = {"accB", "accA", "accB", "accC"};
+        int[] arr = {10, 25, 50, 100};
 
-        int index = linearSearch(arr, "accB");
+        int f = floor(arr, 30);
 
-        System.out.println("Found at index: " + index);
+        System.out.println("Floor: " + f);
     }
 }
