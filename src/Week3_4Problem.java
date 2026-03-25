@@ -1,34 +1,26 @@
+import java.util.*;
+
 public class Week3_4Problem {
 
-    static void mergeSort(int[] arr, int l, int r) {
-        if (l < r) {
-            int m = (l + r) / 2;
-            mergeSort(arr, l, m);
-            mergeSort(arr, m + 1, r);
-            merge(arr, l, m, r);
+    static class Asset {
+        String name;
+        double returnRate;
+
+        Asset(String n, double r) {
+            name = n;
+            returnRate = r;
         }
-    }
-
-    static void merge(int[] arr, int l, int m, int r) {
-        int[] temp = new int[r - l + 1];
-        int i = l, j = m + 1, k = 0;
-
-        while (i <= m && j <= r) {
-            temp[k++] = (arr[i] <= arr[j]) ? arr[i++] : arr[j++];
-        }
-
-        while (i <= m) temp[k++] = arr[i++];
-        while (j <= r) temp[k++] = arr[j++];
-
-        System.arraycopy(temp, 0, arr, l, temp.length);
     }
 
     public static void main(String[] args) {
-        int[] arr = {500, 100, 300};
+        List<Asset> list = new ArrayList<>();
+        list.add(new Asset("AAPL", 12));
+        list.add(new Asset("TSLA", 8));
+        list.add(new Asset("GOOG", 15));
 
-        mergeSort(arr, 0, arr.length - 1);
+        list.sort(Comparator.comparingDouble(a -> a.returnRate));
 
-        System.out.println("Sorted:");
-        for (int x : arr) System.out.print(x + " ");
+        for (Asset a : list)
+            System.out.println(a.name + ":" + a.returnRate);
     }
 }
